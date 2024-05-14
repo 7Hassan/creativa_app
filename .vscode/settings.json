@@ -1,3 +1,18 @@
 {
-  "cmake.sourceDirectory": "/Users/apple/Desktop/Works/Applications/creativa_app/app/linux"
+  "cmake.sourceDirectory": "/Users/apple/Desktop/Works/Applications/creativa_app/app/linux",
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/README.md": true,
+    "README.md": true,
+    "app/.gitignore": true,
+    "**/.gitignore": true,
+    "**/LICENSE": true,
+    "LICENSE": true
+  },
+  "explorerExclude.backup": {}
 }
