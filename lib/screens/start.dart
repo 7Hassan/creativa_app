@@ -1,75 +1,105 @@
-import 'package:creativa_app/screens/onboard.dart';
+import 'package:creativa_app/widgets/auth/loginPop.dart';
+import 'package:creativa_app/widgets/auth/signupPop.dart';
+import 'package:creativa_app/widgets/start/btn.dart';
 import 'package:flutter/material.dart';
+import 'package:creativa_app/data/content.dart';
+
 
 class Start extends StatelessWidget {
-  const Start({super.key});
+  const Start({Key? key}) : super(key: key);
+
+   void _showSignUpModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      builder: (BuildContext context) {
+        return const SignUpModal();
+      },
+    );
+  }
+
+  void _navigateToLogIn(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.white,
+      builder: (BuildContext context) {
+        return const LoginModel();
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Expanded(
-            child: Image.asset(
-              'assets/images/welcome.gif',
-              fit: BoxFit.cover, // Ensure the image fills the space
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              child: Image.asset(
+                'assets/images/welcome4.gif',
+                width: double.infinity,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          Image.asset(
-            'assets/images/logo.JPG',
-            height: 100,
-            width: 100,
-          ),
-          const Text(
-            'Welcome to',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 15,
-              color: Color.fromRGBO(0, 0, 0, .8),
+            Image.asset(
+              'assets/images/logo.JPG',
+              height: 100,
+              width: 100,
             ),
-          ),
-          const SizedBox(height: 3),
-          const Text(
-            'Creativa Port Said',
-            style: TextStyle(
-              fontSize: 25,
-              color: Color.fromRGBO(0, 79, 159, 1.0),
-              fontWeight: FontWeight.w600,
+            const Text(
+              'Welcome to',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 15,
+                color: Color.fromRGBO(0, 0, 0, .8),
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 20),
-          Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const IntroScreen()),
-                  );
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF004F9F),
-                  minimumSize: const Size(304, 60), // Set width and height
-                  padding: EdgeInsets.zero, // Remove internal padding
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(60.0), // Add border radius
-                  ),
+            const SizedBox(height: 3),
+            const Text(
+              'Creativa Port Said',
+              style: TextStyle(
+                fontSize: 30,
+                color: Color.fromRGBO(0, 79, 159, 1.0),
+                fontWeight: FontWeight.w600,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 20),
+            CustomButton(
+              text: 'Sign up',
+              color: const Color(0xFF004F9F),
+              textColor: Colors.white,
+              onPressed: () => _showSignUpModal(context),
+            ),
+            const SizedBox(height: 9),
+            CustomButton(
+              text: 'Log in',
+              color: const Color.fromRGBO(239, 239, 239, 1),
+              textColor: Colors.black,
+              onPressed: () => _navigateToLogIn(context),
+            ),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Text(
+                policy,
+                style: const TextStyle(
+                  fontSize: 13,
+                  color: Color.fromRGBO(0, 0, 0, 0.486),
                 ),
-                child: const Text(
-                  'Continue',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              )),
-          const SizedBox(height: 15),
-        ],
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            const SizedBox(height: 10),
+          ],
+        ),
       ),
     );
   }

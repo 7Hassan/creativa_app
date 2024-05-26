@@ -12,14 +12,15 @@ Future<bool> readFromPrefs() async {
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  bool completed = await readFromPrefs();
+  // bool completed = await readFromPrefs();
+   bool auth = false;
 
-  runApp(MyApp(completed));
+  runApp(MyApp(auth));
 }
 
 class MyApp extends StatelessWidget {
-  final bool completed;
-  const MyApp(this.completed, {super.key});
+  final bool auth;
+  const MyApp(this.auth, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Creativa PS',
       theme: ThemeData(colorSchemeSeed: const Color.fromRGBO(2, 90, 186, 0.82)),
-      home: completed ? const Home() : const Start(),
+      home: auth ? const Home() : const Start(),
     );
   }
 }

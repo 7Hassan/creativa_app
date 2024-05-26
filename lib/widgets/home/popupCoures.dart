@@ -58,7 +58,7 @@ class CoursePopup extends StatelessWidget {
               style: const TextStyle(
                 fontSize: 15,
                 color: Color.fromRGBO(28, 80, 154, 1.0),
-                fontWeight: FontWeight.w300,
+                fontWeight: FontWeight.w500,
               ),
               textAlign: TextAlign.center,
             ),

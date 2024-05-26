@@ -8,3 +8,6 @@ Map<String, String> socialMedia = {
   "location": "https://maps.app.goo.gl/CrjTtdCK71Nxd7gy5",
   "whatsapp": "https://wa.me/+201070384999",
 };
+
+String policy =
+    "By continuing, you agree to Creativa’s Terms of Service and acknowledge you've read our Privacy Policy";

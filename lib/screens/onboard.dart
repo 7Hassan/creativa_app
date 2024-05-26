@@ -1,11 +1,10 @@
+import 'package:creativa_app/screens/home.dart';
 import 'package:creativa_app/widgets/home/url.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../data/content.dart';
-import 'home.dart';
 
 class IntroScreen extends StatelessWidget {
   const IntroScreen({Key? key}) : super(key: key);
@@ -106,13 +105,21 @@ class IntroScreen extends StatelessWidget {
         onDone: () async {
           onFinish();
           // When done button is press
-          Navigator.of(context)
-              .pushReplacement(MaterialPageRoute(builder: (_) => const Home()));
+         Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (context) => const Home(),
+              ),
+              (Route<dynamic> route) => false,
+            );
         },
         onSkip: () {
           onFinish();
-          Navigator.of(context)
-              .pushReplacement(MaterialPageRoute(builder: (_) => const Home()));
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (context) => const Home(),
+              ),
+              (Route<dynamic> route) => false,
+            );
         },
         showSkipButton: true,
         skip: const Text(

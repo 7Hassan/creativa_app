@@ -1,6 +1,5 @@
 import 'package:creativa_app/widgets/home/url.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../data/content.dart'; // Assuming you have a file named content.dart in a directory named data
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -54,16 +53,19 @@ class InfoIcon extends StatelessWidget {
                             icon: FontAwesomeIcons.facebook,
                             text: 'Facebook',
                             url: socialMedia['facebook']!,
+                            color:Color.fromRGBO(8, 102, 255, 1)
                           ),
                           SocialMediaButton(
                             icon: FontAwesomeIcons.whatsapp,
                             text: 'WhatsApp',
                             url: socialMedia['whatsapp']!,
+                            color:Color.fromRGBO(64, 195, 81, 1)
                           ),
                           SocialMediaButton(
                             icon: FontAwesomeIcons.locationArrow,
                             text: 'Location',
                             url: socialMedia['location']!,
+                            color:Color.fromRGBO(52, 168, 83, 1)
                           ),
                         ],
                       ),
@@ -86,6 +88,8 @@ class InfoIcon extends StatelessWidget {
     );
   }
 }
+
+
 
 class CircularImageContainer extends StatelessWidget {
   const CircularImageContainer({super.key});
@@ -116,42 +120,45 @@ class CircularImageContainer extends StatelessWidget {
   }
 }
 
+
 class SocialMediaButton extends StatelessWidget {
   final IconData icon;
-  final String text;
   final String url;
+  final Color color;
+  final String text;
 
   const SocialMediaButton({
     Key? key,
     required this.icon,
-    required this.text,
     required this.url,
+    required this.color,
+    required this.text,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      // Ensure all buttons have the same width
-      width: 220, // Set the width as needed
-      child: ElevatedButton.icon(
-        onPressed: () => urlLaunche(url),
-        icon: FaIcon(icon, color: Colors.white),
-        label: Padding(
-          padding: const EdgeInsets.only(left: 5.0),
-          child: Text(
-            text,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.white,
-              letterSpacing: 1.3,
-            ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ElevatedButton(
+          onPressed: () => urlLaunche(url),
+          style: ElevatedButton.styleFrom(
+            shape: const CircleBorder(), backgroundColor: color,
+            padding: const EdgeInsets.all(16), // Background color
+          ),
+          child: FaIcon(icon, size: 30, color: Colors.white),
+        ),
+        const SizedBox(height: 10), // Space between the icon and text
+        Text(
+          text,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            letterSpacing: 2,
+            color: Color.fromRGBO(0, 0, 0, .5), // Change this to your desired text color
           ),
         ),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromRGBO(2, 90, 186, 0.82),
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        ),
-      ),
+      ],
     );
   }
 }
